@@ -8,7 +8,7 @@ module.exports = async (fastify) => {
     const data = []
     for (let i = 1; i <= 5; i++) {
       const key = `w${i}`
-      let v = parseInt(form[key])
+      let v = parseFloat(form[key])
       data.push(v)
     }
     return data
@@ -18,7 +18,7 @@ module.exports = async (fastify) => {
     const doc = await collection.findOne({})
     const item = doc ? doc : {
       data: [0.2, 0.3, 0.3, 0.15, 0.15]
-    }  
+    }
     console.log(item)
     reply.view('app/bobot', {
       item: JSON.stringify(item.data)
