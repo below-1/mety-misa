@@ -26,7 +26,7 @@ fastify.register(require('fastify-cookie'))
 fastify.register(require('fastify-session'), { secret: process.env.SESSION_SECRET, cookie: { secure: false } })
 fastify.register(require('./router'))
 
-fastify.listen(process.env.PORT, (err, address) => {
+fastify.listen(process.env.PORT, '0.0.0.0', (err, address) => {
   if (err) {
     console.log(err)
     process.exit(1)
