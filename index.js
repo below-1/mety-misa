@@ -2,7 +2,7 @@ const path = require('path')
 const multer = require('fastify-multer')
 
 const fastify = require('fastify')({
-  logger: true
+  logger: process.env.NODE_ENV == 'development'
 })
 
 fastify.register(require('fastify-blipp'))
