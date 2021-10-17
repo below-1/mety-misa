@@ -1,0 +1,64 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+<h1>Input Data Bobot</h1>
+
+<div class="row" id="form-container">
+  <div class="col-12 col-lg-6">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="card-title mb-0">Bobot yang digunakan saat perangkingan</h5>
+      </div>
+      <form method="POST" enctype="multipart/form-data" class="card-body">
+        <div class="mb-3">
+          <label>C1</label>
+          <input class="form-control" name="w1" type="number" v-model="item[0]" />
+        </div>
+        <div class="mb-3">
+          <label>C2</label>
+          <input class="form-control" name="w2" type="number" v-model="item[1]" />
+        </div>
+        <div class="mb-3">
+          <label>C3</label>
+          <input class="form-control" name="w3" type="number" v-model="item[2]" />
+        </div>
+        <div class="mb-3">
+          <label>C4</label>
+          <input class="form-control" name="w4" type="number" v-model="item[3]" />
+        </div>
+        <div class="mb-3">
+          <label>C5</label>
+          <input class="form-control" name="w5" type="number" v-model="item[4]" />
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg">simpan</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
+
+
+{% block scripts %}
+  <script src="https://unpkg.com/vue@next"></script>
+  <script>
+    const Bobot = {
+      data() {
+        return {
+          item: {{ item | safe }}
+        }
+      },
+      computed: {
+        totalBobot() {
+          const result = this.item.reduce((a, b) => a + b, 0) / 100
+          console.log(result)
+          return result
+        },
+        totalBobotEqual1() {
+          return this.totalBobot == 1
+        }
+      }
+    }
+
+    Vue.createApp(Bobot).mount('#form-container')
+  </script>
+{% endblock %}

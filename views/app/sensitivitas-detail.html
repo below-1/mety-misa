@@ -1,0 +1,46 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-12 col-lg-12">
+      <div class="card">
+        <div class="card-body" style="display: flex; justify-content: space-between;">
+          <h4>Hasil Pengurutan</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 col-lg-12">
+      <div class="card">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Nama</th>
+              <th>V</th>
+              <th>Posisi Lama</th>
+              <th>Posisi Baru</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in result %}
+              <tr class="{% if item.change %} bg-primary text-white {% endif %}">
+                <td>{{ item.nama }}</td>
+                <td>{{ item.v.toFixed(4) }}</td>
+                <td>
+                  {% if item.change %} 
+                    {{ item.newPos + 1 }}
+                  {% endif %}
+                </td>
+                <td>
+                  {{ loop.index }}
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+{% endblock %}

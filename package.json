@@ -1,0 +1,30 @@
+{
+  "name": "mety-misa-web-client",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development node -r dotenv/config index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cross-env": "^7.0.3",
+    "fastify": "^3.22.0",
+    "fastify-blipp": "^3.1.0",
+    "fastify-cookie": "^5.3.1",
+    "fastify-mongodb": "^4.1.1",
+    "fastify-multer": "^2.0.2",
+    "fastify-multipart": "^5.0.2",
+    "fastify-session": "^5.2.1",
+    "fastify-static": "^4.4.2",
+    "lodash": "^4.17.21",
+    "nunjucks": "^3.2.3",
+    "point-of-view": "^4.15.2"
+  },
+  "devDependencies": {
+    "dotenv": "^10.0.0"
+  }
+}

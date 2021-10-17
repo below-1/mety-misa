@@ -1,0 +1,44 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-12 col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <h1>Pengujian Sensitivitas</h1>
+          <p>Pengujian Sensitivitas digunakan untuk mengukur kestabilan dari pemilihan solusi optimal apabila terjadi perubahan terhadap 
+beberapa parameter</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Kriteria</th>
+                <th>Perubahan</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in diffs %}
+                <tr>
+                  <td>{{ item.c }}</td>
+                  <td>{{ item.v }} %</td>
+                  <td class="text-end">
+                    <a href="/app/wp/sensitivitas/{{loop.index0}}" class="btn btn-sm btn-primary">detail</a>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

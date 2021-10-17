@@ -1,0 +1,39 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+<h1>Edit Data Dosen</h1>
+
+<div class="row">
+  <div class="col-12 col-lg-6">
+    <div class="card">
+      <form method="POST" enctype="multipart/form-data" class="card-body">
+        <div class="mb-3">
+          <label>Nama Dosen</label>
+          <input class="form-control" name="nama" value="{{item.nama}}" />
+        </div>
+        <div class="mb-3">
+          <label>Pendidikan dan Pengajaran</label>
+          <input class="form-control" name="c1" type="number" step="0.01" value="{{item.data[0]}}" />
+        </div>
+        <div class="mb-3">
+          <label>Penelitian</label>
+          <input class="form-control" name="c2" type="number" value="{{item.data[1]}}" />
+        </div>
+        <div class="mb-3">
+          <label>Pengabdian pada masyarakat</label>
+          <input class="form-control" name="c3" type="number" value="{{item.data[2]}}" />
+        </div>
+        <div class="mb-3">
+          <label>Penilaian mahasiswa</label>
+          <input class="form-control" name="c4" type="number" step="0.01" value="{{item.data[3]}}" />
+        </div>
+        <div class="mb-3">
+          <label>Penilaian atasan</label>
+          <input class="form-control" name="c5" type="number" step="0.01" value="{{item.data[4]}}" />
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg">simpan</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
