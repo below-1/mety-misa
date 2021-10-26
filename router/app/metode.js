@@ -67,15 +67,27 @@ function singleSensitivitas({ xs, weights, icriteria }) {
 function sensitivitas({ xs, weights }) {
   const oriResult = wp({ xs, weights })
   const n = oriResult.length
-  const results = []
+  const results_05 = []
+  const results_1 = []
   for (let i = 0; i < 5; i++) {
     let updatedWeights = [ ...weights ]
     updatedWeights[i] += 0.5
     const modResult = wp({ xs, weights: updatedWeights })
     const diffs = compareResult(oriResult, modResult)
-    results.push(diffs / n * 100)
+    results_05.push(diffs / n * 100)
   }
-  return results
+  for (let i = 0; i < 5; i++) {
+    let updatedWeights = [ ...weights ]
+    updatedWeights[i] += 1
+    const modResult = wp({ xs, weights: updatedWeights })
+    const diffs = compareResult(oriResult, modResult)
+    results_1.push(diffs / n * 100)
+  }
+  console.log(results_05)
+  return [
+    results_05,
+    results_1
+ ]
 }
 
 module.exports = async (fastify) => {
@@ -93,7 +105,7 @@ module.exports = async (fastify) => {
   fastify.get('/sensitivitas', async (request, reply) => {
     const weights = await fastify.mongo.db.collection('bobot').findOne({})
     const xs = await fastify.mongo.db.collection('dosen').find({}).toArray()
-    const result = sensitivitas({ weights: weights.data, xs })
+    const results = sensitivitas({ weights: weights.data, xs })
     const criteria = [
       'pendidikan dan pengajaran',
       'penelititan',
@@ -101,12 +113,34 @@ module.exports = async (fastify) => {
       'penilaian mahasiswa',
       'penilaian atasan'
     ]
-    const diffs = result.map((x, i) => ({
-      c: criteria[i],
-      v: x
-    }))
+    const diffs = results.map((result, ci) => {
+      return result.map((x, i) => ({
+        c: criteria[i],
+        v: x
+      }))
+      // const totalData = changes.length
+      // const ratioChange = totalChanges / totalData
+      // return {
+      //   changes,
+      //   totalChanges,
+      //   totalData,
+      //   ratioChange
+      // }
+    })
+
+    const criteriaChanges = weights.data.map((w, i) => {
+      return {
+        w,
+        c: criteria[i],
+        diff_05: diffs[0][i].v,
+        diff_1: diffs[1][i].v
+      }
+    })
+
+      
     reply.view('app/sensitivitas', {
-      diffs
+      diffs,
+      criteriaChanges
     })
   })
 

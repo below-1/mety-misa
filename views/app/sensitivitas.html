@@ -26,13 +26,71 @@ beberapa parameter</p>
               </tr>
             </thead>
             <tbody>
-              {% for item in diffs %}
+              {% for item in diffs[0] %}
                 <tr>
                   <td>{{ item.c }}</td>
                   <td>{{ item.v }} %</td>
                   <td class="text-end">
                     <a href="/app/wp/sensitivitas/{{loop.index0}}" class="btn btn-sm btn-primary">detail</a>
                   </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Kriteria</th>
+                <th>Perubahan</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in diffs[1] %}
+                <tr>
+                  <td>{{ item.c }}</td>
+                  <td>{{ item.v }} %</td>
+                  <td class="text-end">
+                    <a href="/app/wp/sensitivitas/{{loop.index0}}" class="btn btn-sm btn-primary">detail</a>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Kriteria</th>
+                <th>Bobot Awal</th>
+                <th>Perubahan +0.5</th>
+                <th>Perubahan +1.0</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in criteriaChanges %}
+                <tr>
+                  <td>{{ item.c }}</td>
+                  <td>{{ item.w }}</td>
+                  <td>{{ item.diff_05 }} %</td>
+                  <td>{{ item.diff_1 }} %</td>
                 </tr>
               {% endfor %}
             </tbody>
