@@ -6,6 +6,22 @@
       <div class="card">
         <div class="card-body" style="display: flex; justify-content: space-between;">
           <h4>Hasil Pengurutan</h4>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div class="me-4">
+              <label>Periode</label>
+              <select class="form-control" id="periode">
+                {% for periode in periodeList %}
+                  <option 
+                    value="{{ periode._id }}"
+                    {% if periode._id == currentPeriode %}
+                      selected
+                    {% endif %}
+                  >{{ periode.tahun }} - {{ periode.semester }}
+                  </option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -33,4 +49,15 @@
       </div>
     </div>
   </div>
+{% endblock %}
+
+{% block scripts %}
+{% raw %}
+  <script>
+    const periodeEl = document.getElementById('periode');
+    periodeEl.addEventListener('change', function (event) {
+      window.location = '/app/wp/rank?periode=' + event.target.value
+    })
+  </script>
+{% endraw %}
 {% endblock %}

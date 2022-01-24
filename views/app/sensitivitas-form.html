@@ -1,0 +1,61 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+<h1>Input Bobot Sensitivitas</h1>
+
+<div class="row" id="form-container">
+  <div class="col-12 col-lg-6">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="card-title mb-0">Bobot yang digunakan saat perangkingan</h5>
+      </div>
+      <form method="POST" enctype="multipart/form-data" class="card-body">
+        <div class="mb-3">
+          <label>W1</label>
+          <input class="form-control" name="w1" type="number" step="0.01" v-model="item.w1" />
+        </div>
+        <div class="mb-3">
+          <label>W2</label>
+          <input class="form-control" name="w2" type="number" step="0.01" v-model="item.w2" />
+        </div>
+        <button type="submit" 
+          :disabled="!totalBobotEqual1"
+          class="btn btn-primary btn-lg">
+          <template v-if="totalBobotEqual1">
+            simpan
+          </template>
+          <template v-else>
+            Simpan
+          </template>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
+
+
+{% block scripts %}
+  <script src="https://unpkg.com/vue@next"></script>
+  <script>
+    const Bobot = {
+      data() {
+        return {
+          item: {{ item|dump|safe }}
+        }
+      },
+      computed: {
+        totalBobot() {
+          const result = this.item.w1 + this.item.w2
+          console.log(result)
+          return result
+        },
+        totalBobotEqual1() {
+          return this.totalBobot == 1
+        }
+      }
+    }
+
+    Vue.createApp(Bobot).mount('#form-container')
+  </script>
+{% endblock %}

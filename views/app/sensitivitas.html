@@ -31,7 +31,7 @@ beberapa parameter</p>
                   <td>{{ item.c }}</td>
                   <td>{{ item.v }} %</td>
                   <td class="text-end">
-                    <a href="/app/wp/sensitivitas/{{loop.index0}}" class="btn btn-sm btn-primary">detail</a>
+                    <a href="/app/wp/sensitivitas/{{loop.index0}}/{{weightChanges.w1.toFixed(2)}}" class="btn btn-sm btn-primary">detail</a>
                   </td>
                 </tr>
               {% endfor %}
@@ -60,7 +60,7 @@ beberapa parameter</p>
                   <td>{{ item.c }}</td>
                   <td>{{ item.v }} %</td>
                   <td class="text-end">
-                    <a href="/app/wp/sensitivitas/{{loop.index0}}" class="btn btn-sm btn-primary">detail</a>
+                    <a href="/app/wp/sensitivitas/{{loop.index0}}/{{weightChanges.w2.toFixed(2)}}" class="btn btn-sm btn-primary">detail</a>
                   </td>
                 </tr>
               {% endfor %}
@@ -80,8 +80,8 @@ beberapa parameter</p>
               <tr>
                 <th>Kriteria</th>
                 <th>Bobot Awal</th>
-                <th>Perubahan +0.5</th>
-                <th>Perubahan +1.0</th>
+                <th>Perubahan +{{weightChanges.w1}}</th>
+                <th>Perubahan +{{weightChanges.w2}}</th>
               </tr>
             </thead>
             <tbody>

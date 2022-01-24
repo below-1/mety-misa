@@ -98,4 +98,7 @@ module.exports = async (fastify) => {
   fastify.register(require('./metode'), {
     prefix: 'wp'
   })
+  fastify.register(require('./periode'), {
+    prefix: 'periode'
+  })
 }

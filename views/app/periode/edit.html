@@ -1,0 +1,23 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+<h1>Input Data Periode</h1>
+
+<div class="row">
+  <div class="col-12 col-lg-6">
+    <div class="card">
+      <form method="POST" enctype="multipart/form-data" class="card-body">
+        <div class="mb-3">
+          <label>Tahun</label>
+          <input class="form-control" name="tahun" type="number" value={{ item.tahun }} />
+        </div>
+        <div class="mb-3">
+          <label>Semester</label>
+          <input class="form-control" name="semester" type="number" min="1" max="2" value={{ item.semester }} />
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg">simpan</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

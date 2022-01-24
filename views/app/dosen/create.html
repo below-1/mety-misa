@@ -12,6 +12,14 @@
           <input class="form-control" name="nama" />
         </div>
         <div class="mb-3">
+          <label>Periode</label>
+          <select name="periode" class="form-control">
+            {% for per in periodeList %}
+              <option value="{{ per._id }}">{{ per.tahun }} - {{ per.semester }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="mb-3">
           <label>Pendidikan dan Pengajaran</label>
           <input class="form-control" name="c1" type="number" step="0.01" />
         </div>
